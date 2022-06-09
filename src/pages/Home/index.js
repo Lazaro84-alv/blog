@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
+import api from '../../services/api';
+
+import CategoryItem from '../../components/CategoryItem';
 
 export default function Home(){
 
     const navigation = useNavigation();
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        function loadData() {
-            console.log("COMPONENTE CARREGOU")
+        
+        async function loadData() {
+            const category = await api.get("/api/categories?populate=icon");
+            setCategories(category.data.data);
         }
 
         loadData();
-        
+
     }, [])
 
     return(
@@ -26,6 +32,15 @@ export default function Home(){
                     <Feather name="search" size={24} color="#FFF"/>
                 </TouchableOpacity>
             </View>
+
+            <FlatList 
+                style={styles.categories}
+                data={categories}
+                keyExtractor={(item) => String(item.id)}
+                renderItem={ ({ item }) => (
+                    <CategoryItem />
+                ) }
+            />
 
         </SafeAreaView>
     )
