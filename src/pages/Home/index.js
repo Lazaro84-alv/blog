@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
 export default function Home(){
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        function loadData() {
+            console.log("COMPONENTE CARREGOU")
+        }
+
+        loadData();
+        
+    }, [])
 
     return(
         <SafeAreaView style={styles.container}>
@@ -13,7 +22,7 @@ export default function Home(){
             <View style={styles.header}>
                 <Text style={styles.name}>DevBlog</Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Search")}>
                     <Feather name="search" size={24} color="#FFF"/>
                 </TouchableOpacity>
             </View>
