@@ -33,12 +33,17 @@ export default function Home(){
                 </TouchableOpacity>
             </View>
 
-            <FlatList 
+            <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                contentContainerStyle={{ paddingRight: 12 }} 
                 style={styles.categories}
                 data={categories}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={ ({ item }) => (
-                    <CategoryItem />
+                    <CategoryItem 
+                        data={item}
+                    />
                 ) }
             />
 
@@ -63,5 +68,12 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: '#FFF',
         fontWeight: 'bold',
+    },
+    categories: {
+        maxHeight: 115,
+        backgroundColor: '#EFEFEF',
+        marginHorizontal: 18,
+        borderRadius: 8,
+        zIndex: 9,
     },
 })
