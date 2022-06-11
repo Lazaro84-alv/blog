@@ -6,6 +6,7 @@ import api from '../../services/api';
 
 import CategoryItem from '../../components/CategoryItem';
 import { getFavorite, setFavorite } from '../../services/favorite';
+import FavoritePost from '../../components/FavoritePost';
 
 export default function Home(){
 
@@ -69,10 +70,12 @@ export default function Home(){
                 {favCategory.length !== 0 && (
                     <FlatList 
                         style={{ marginTop: 50, maxHeight: 100, paddingStart: 18 }}
+                        contentContainerStyle={{ paddingEnd: 18 }}
                         data={favCategory}
                         showsHorizontalScrollIndicator={false}
+                        horizontal={true}
                         keyExtractor={(item) => String(item.id)}
-                        renderItem={ ({ item }) => <Text>TESTE</Text>}
+                        renderItem={ ({ item }) => <FavoritePost data={item}/>}
                     />
                 )}    
             </View>
@@ -105,5 +108,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 18,
         borderRadius: 8,
         zIndex: 9,
+    },
+    main: {
+        backgroundColor: '#FFF',
+        flex: 1,
+        marginTop: -30,
     },
 })
