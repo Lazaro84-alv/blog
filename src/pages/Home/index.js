@@ -65,6 +65,18 @@ export default function Home(){
                 ) }
             />
 
+            <View style={styles.main}>
+                {favCategory.length !== 0 && (
+                    <FlatList 
+                        style={{ marginTop: 50, maxHeight: 100, paddingStart: 18 }}
+                        data={favCategory}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item) => String(item.id)}
+                        renderItem={ ({ item }) => <Text>TESTE</Text>}
+                    />
+                )}    
+            </View>
+
         </SafeAreaView>
     )
 }
