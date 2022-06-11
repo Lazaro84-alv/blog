@@ -1,12 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 const { width: WIDTH } = Dimensions.get('window');
 
 export default function FavoritePost({ data }) {
+    
+    const navigation = useNavigation();
+
+    function handleNavigate() {
+        navigation.navigate("Detail", { id: data.id });
+    }
+
     return (
         <TouchableOpacity
             style={styles.container}
+            onPress={handleNavigate}
         >
             <ImageBackground
                 source={{ uri: `http://192.168.0.220:1337${data?.attributes?.cover?.data?.attributes?.url}` }}
