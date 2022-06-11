@@ -15,7 +15,7 @@ export default function CategoryItem({ data, favorite }) {
             style={styles.container}
             activeOpacity={0.9}
             onPress={handleNavigate}
-            onLongPress={favorite}
+            onLongPress={ favorite }
         >
             <Image 
                 style={styles.icon}

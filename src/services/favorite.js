@@ -6,11 +6,11 @@ export async function getFavorite() {
     const data = await AsyncStorage.getItem('@favCategory');
 
     if(data !== null) {
-        const response = await api.get(`api/categories/${data}?fields=name&populate=posts,posts,cover`);
+        const response = await api.get(`api/categories/${data}?fields=name&populate=posts,posts.cover`);
 
         return response.data?.data?.attributes?.posts?.data;
 
-    } else{
+    }else{
         return [];
     }
 }
