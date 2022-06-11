@@ -5,11 +5,13 @@ import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
 
 import CategoryItem from '../../components/CategoryItem';
+import { getFavorite, setFavorite } from '../../services/favorite';
 
 export default function Home(){
 
     const navigation = useNavigation();
     const [categories, setCategories] = useState([]);
+    const [favCategory, setFavCategory] = useState([]);
 
     useEffect(() => {
         
@@ -22,9 +24,19 @@ export default function Home(){
 
     }, [])
 
+    useEffect(() => {
+        async function favorite() {
+            const response = await getFavorite();
+            setFavCategory(response);
+        }
+    }, [])
+
     //favorite a category
-    function handleFavorite(id) {
-        alert("CATEGORIA FAVORITADA: " + id);
+    async function handleFavorite(id) {
+        const response = await setFavorite(id);
+
+        setFavCategory(response);
+        alert("Categoria Favoritada!");
     }
 
     return(
