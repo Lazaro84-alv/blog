@@ -37,7 +37,7 @@ export default function Home(){
         const response = await setFavorite(id);
 
         setFavCategory(response);
-        alert("Categoria Favoritada!");
+        //alert("Categoria Favoritada!");
     }
 
     return(
@@ -77,7 +77,15 @@ export default function Home(){
                         keyExtractor={(item) => String(item.id)}
                         renderItem={ ({ item }) => <FavoritePost data={item}/>}
                     />
-                )}    
+                )}
+
+                <Text 
+                    style={[
+                        styles.title,
+                        { marginTop: favCategory.length > 0 ? 14 : 46 } 
+                    ]}
+                    >Conteúdo em alta</Text>
+
             </View>
 
         </SafeAreaView>
@@ -113,5 +121,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         flex: 1,
         marginTop: -30,
+    },
+    title: {
+        fontSize: 21,
+        paddingHorizontal: 18,
+        marginBottom: 14,
+        fontWeight: 'bold',
+        color: '#162133',
     },
 })
