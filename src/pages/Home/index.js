@@ -22,6 +22,11 @@ export default function Home(){
 
     }, [])
 
+    //favorite a category
+    function handleFavorite(id) {
+        alert("CATEGORIA FAVORITADA: " + id);
+    }
+
     return(
         <SafeAreaView style={styles.container}>
             
@@ -43,6 +48,7 @@ export default function Home(){
                 renderItem={ ({ item }) => (
                     <CategoryItem 
                         data={item}
+                        favorite={() => handleFavorite(item.id)}
                     />
                 ) }
             />
